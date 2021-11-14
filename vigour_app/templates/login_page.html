@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Vigour - One Stop Wellness | Log in</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="57x57" href={% static 'images/favicon/apple-icon-57x57.png'%}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'images/favicon/apple-icon-60x60.png'%}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/favicon/apple-icon-72x72.png'%}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/favicon/apple-icon-76x76.png'%}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/favicon/apple-icon-114x114.png'%}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/favicon/apple-icon-120x120.png'%}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/favicon/apple-icon-144x144.png'%}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/favicon/apple-icon-152x152.png'%}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-icon-180x180.png'%}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'images/favicon/android-icon-192x192.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon/favicon-96x96.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+  <link rel="manifest" href="{% static 'images/favicon/manifest.json'%}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'images/favicon/ms-icon-144x144.png'%}">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{% static "plugins/icheck-bootstrap/icheck-bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "dist/css/adminlte.min.css" %}">
+  <link rel="stylesheet" href="{% static 'loginpage.css' %}">
+</head>
+
+<body class="hold-transition login-page">
+  <div class="logclass">
+
+    <div class="login-logo">
+      <a href="/">
+        <img src="{% static 'images/login_image.jpg'%}"></a>
+    </div>
+    <div class="login-box">
+      <div class="card">
+        <div class="card-body login-card-body">
+          <h1 class="login-box-msg">Sign in</h1>
+          <div class="messagerow">
+            <center>
+            {% if messages %}
+            <div class="col-12">
+              {% for message in messages %}
+              {% if message.tags == 'error' %}
+              <div class="alert alert-danger" style="margin-top:10px; width:100%;">{{ message }}</div>
+              {% endif %}
+              {% if message.tags == 'success' %}
+              <div class="alert alert-success" style="margin-top:10px;width: 100%;">{{ message }}</div>
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          </center>
+          </div>
+          <form action="/doLogin" method="post" id="demo-form">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Email" name="email">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" placeholder="Password" name="password">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <button type="submit" class="btn btn-dark btn-block">Sign In</button>
+              </div>
+
+              <br /><br />
+              <div class="col-12 text-center">
+                <a href="{% url 'signup_doctor' %}">Doctor Signup</a> | <a href="{% url 'signup_patient' %}">Patient Signup</a> | <a href="{% url 'signup_hospital' %}">Hospital Signup</a>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "dist/js/adminlte.min.js" %}"></script>
+
+</body>
+
+</html>

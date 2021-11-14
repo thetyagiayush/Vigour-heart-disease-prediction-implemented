@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vigour | One Stop Wellness</title>
+  <link rel="apple-touch-icon" sizes="57x57" href={% static 'images/favicon/apple-icon-57x57.png'%}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'images/favicon/apple-icon-60x60.png'%}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/favicon/apple-icon-72x72.png'%}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/favicon/apple-icon-76x76.png'%}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/favicon/apple-icon-114x114.png'%}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/favicon/apple-icon-120x120.png'%}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/favicon/apple-icon-144x144.png'%}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/favicon/apple-icon-152x152.png'%}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-icon-180x180.png'%}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'images/favicon/android-icon-192x192.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon/favicon-96x96.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+  <link rel="manifest" href="{% static 'images/favicon/manifest.json'%}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'images/favicon/ms-icon-144x144.png'%}">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .custom-toggler.navbar-toggler {
+      border-color: blue;
+    }
+
+    .custom-toggler .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 128, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="container-fluid heartlol">
+      <nav class="navbar navbar-expand-lg">
+        <div class="logo">
+          <a href="/">
+            <img src="{% static 'images/One Stop Wellness.png'%}" width="200rem"></a>
+        </div>
+        <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+          <ul class="navbar-nav ml-auto mr-auto innavbar">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% static 'aboutus.html'%}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact</a>
+            </li>
+          </ul>
+
+
+          <div class="logbutton">
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+              <a class="loginregbutton" style="color:white"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;Hello {{ user.first_name }} &nbsp;</a>
+              <div class="dropdown-content">
+                {% ifequal user.user_type "1" %}
+                <a class="text-decoration-none" href="/admin_home"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                {% ifequal user.user_type "2" %}
+                <a class="text-decoration-none" href="/doctor_home"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                {% ifequal user.user_type "3" %}
+                <a href="/patient_home" class="text-decoration-none"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                {% ifequal user.user_type "4" %}
+                <a class="text-decoration-none" href="/hospital_home"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                <a class="text-decoration-none" href="/logout_user"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;&nbsp;Log Out</a>
+              </div>
+            </div>
+            {% else %}
+            <a href="/login" class="loginregbutton" style="text-decoration:none">LOG IN/SIGN UP</a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+
+      </head>
+      <style type="text/css">
+        form {
+          border-radius: 5px;
+          max-width: 1000px;
+          width: 100%;
+          margin: 2% auto;
+          background-color: #cbcacc;
+          overflow: hidden;
+        }
+
+
+
+        input {
+          border-radius: 5px 5px 5px 5px;
+          border: 1px solid rgb(235, 226, 226);
+          margin-bottom: 15px;
+          width: 90%;
+          height: 30px;
+          float: left;
+          padding: 0px 10px;
+          border-style: ridge;
+          color: rgb(36, 35, 34);
+          font-size: 0.7rem;
+        }
+
+
+        .form-group {
+          overflow: hidden;
+          clear: both;
+        }
+
+
+        .contentform {
+          padding: 20px 30px;
+        }
+
+        .button-contact {
+          background-color: #000000;
+          color: #fff;
+          text-align: center;
+          width: 100%;
+          border: 0;
+          padding: 17px 25px;
+          border-radius: 0px 0px 5px 5px;
+          cursor: pointer;
+          margin-top: 40px;
+          font-size: 18px;
+          text-shadow: 2px 2px 0px rgba(41, 38, 38, 0.685);
+        }
+
+        .leftcontact {
+          width: 30%;
+          float: left;
+          border-right: 1px dotted #ccc;
+          box-sizing: border-box;
+          padding: 0px 15px 0px 0px;
+        }
+
+        .rightcontact {
+          width: 30%;
+          float: right;
+          box-sizing: border-box;
+          padding: 0px 0px 0px 15px;
+        }
+
+        .centercontact {
+          width: 37%;
+          float: left;
+          box-sizing: border-box;
+          padding: 0px 0px 0px 15px;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        }
+      </style>
+
+      <body>
+        <center>
+          <h1>Heart Disease Prediction</h1>
+        </center>
+
+        <form action="result" method="post">
+          <h2 class="formhead">Fill Your Details:</h2>
+          {% csrf_token %}
+          <div class="contentform">
+            <div class="leftcontact">
+              <div class="form-group">
+                <p>Age</p>
+                <input type="number" name="age" placeholder="Age" required />
+              </div>
+              <div class="form-group">
+                <p>Gender</p>
+                <input type="number" name="sex" required list="sex" placeholder="Select Gender From Dropdown" />
+                <datalist id="sex">
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </datalist>
+
+              </div>
+
+
+              <div class="form-group">
+                <p>Chest Pain</p>
+                <input type="number" name="cp" required list="chestpain" placeholder="Select Chest Pain Type" />
+                <datalist id="chestpain">
+                  <option value="0">Typical Angina</option>
+                  <option value="1">Atypical Angina</option>
+                  <option value="2">Non-Anginal Pain</option>
+                  <option value="3">Asymptomatic</option>
+                </datalist>
+              </div>
+              <div class="form-group">
+                <p>Resting BP (mm/Hg)</p>
+                <input type="number" name="trestbps" required placeholder="Enter Resting Blood Pressure" />
+
+              </div>
+            </div>
+            <div class="centercontact">
+              <div class="form-group">
+                <p>Cholestrol (mg/dl)</p>
+                <input type="number" name="chol" required placeholder="Enter Serum Cholestoral Value in mg/dl" />
+              </div>
+              <div class="form-group">
+                <p>Fasting Blood Sugar</p>
+                <input type="number" name="fbs" required placeholder="Select Fasting Blood Sugar" list="bloodsugar" />
+                <datalist id="bloodsugar">
+                  <option value="1">Fasting Blood Sugar > 120 mg/dl</option>
+                  <option value="0">Fasting Blood Sugar < 120 mg/dl</option>
+                </datalist>
+              </div>
+
+              <div class="form-group">
+                <p>Resting ECG</p>
+                <input type="number" name="restecg" required placeholder="Select Resting Electrocardiographic Results" list="ecg" />
+                <datalist id="ecg">
+                  <option value="0">Normal</option>
+                  <option value="1">Having ST-T wave abnormality</option>
+                  <option value="2">Showing probable or definite left ventricular hypertrophy by Estes' criteria</option>
+                </datalist>
+              </div>
+
+              <div class="form-group">
+                <p>Maximum Heart Rate</p>
+                <input type="number" name="thalach" required placeholder="Enter Maximum Hear Rate Achieved" />
+              </div>
+
+
+              <div class="form-group">
+                <p>Exercise Induced Angina</p>
+                <input type="number" name="exang" required placeholder="Do You Have Exercise Induced Angina" list="exercise" />
+                <datalist id="exercise">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </datalist>
+
+              </div>
+            </div>
+            <div class="rightcontact">
+              <div class="form-group">
+                <p>ST depression</p>
+                <input type="number" step="any" name="oldpeak" required placeholder="Enter Value of ST Depression" />
+              </div>
+
+
+              <div class="form-group">
+                <p>Slope of ST segment</p>
+
+                <input type="number" name="slope" required placeholder="Select The Sope of The Peak Exercise ST Segment" list="slopest" />
+                <datalist id="slopest">
+                  <option value="1">Up-Sloping</option>
+                  <option value="2">Flat</option>
+                  <option value="3">Down-Sloping</option>
+                </datalist>
+
+              </div>
+              <div class="form-group">
+                <p>Number of Blood Vessels</p>
+                <input type="number" name="ca" required placeholder="Select A Value From 0-3" list="bloodvessel" />
+                <datalist id="bloodvessel">
+                  <option value="0">
+                  <option value="1">
+                  <option value="2">
+                  <option value="3">
+                </datalist>
+              </div>
+
+              <div class="form-group">
+                <p>Thal<span>*</span></p>
+                <input type="number" name="thal" required placeholder="Select Thalassemia Value" list="thalvalue" />
+                <datalist id="thalvalue">
+                  <option value="1">Normal</option>
+                  <option value="2">Fixed Defect</option>
+                  <option value="3">Reversable Defect</option>
+                </datalist>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="button-contact">Get Predictions</button>
+        </form>
+      </body>
+
+      {% include 'footer.html' %}

@@ -1,0 +1,167 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vigour | One Stop Wellness</title>
+  <link rel="apple-touch-icon" sizes="57x57" href={% static 'images/favicon/apple-icon-57x57.png'%}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'images/favicon/apple-icon-60x60.png'%}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/favicon/apple-icon-72x72.png'%}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/favicon/apple-icon-76x76.png'%}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/favicon/apple-icon-114x114.png'%}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/favicon/apple-icon-120x120.png'%}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/favicon/apple-icon-144x144.png'%}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/favicon/apple-icon-152x152.png'%}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-icon-180x180.png'%}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'images/favicon/android-icon-192x192.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon/favicon-96x96.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+  <link rel="manifest" href="{% static 'images/favicon/manifest.json'%}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'images/favicon/ms-icon-144x144.png'%}">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+        .custom-toggler.navbar-toggler {
+            border-color: blue;
+        }
+        .custom-toggler .navbar-toggler-icon {
+            background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 128, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg">
+        <div class="logo">
+          <a href="/">
+            <img src="{% static 'images/One Stop Wellness.png'%}" width="200rem"></a>
+        </div>
+        <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+          <ul class="navbar-nav ml-auto mr-auto innavbar">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% static 'aboutus.html'%}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact</a>
+            </li>
+          </ul>
+
+
+          <div class="logbutton">
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+              <a class="loginregbutton" style="color:white"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;Hello {{ user.first_name }} &nbsp;</a>
+              <div class="dropdown-content">
+                {% ifequal user.user_type "1" %}
+                <a class="text-decoration-none" href="/admin_home"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                {% ifequal user.user_type "2" %}
+                <a class="text-decoration-none" href="/doctor_home"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                {% ifequal user.user_type "3" %}
+                <a href="/patient_home" class="text-decoration-none"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                {% ifequal user.user_type "4" %}
+                <a class="text-decoration-none" href="/hospital_home"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Dashboard</a>
+                {% endifequal %}
+                <a class="text-decoration-none" href="/logout_user"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;&nbsp;Log Out</a>
+              </div>
+            </div>
+            {% else %}
+            <a href="/login" class="loginregbutton" style="text-decoration:none">LOG IN/SIGN UP</a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <image class="firstimg" src="{% static 'images/first.png'%}"></image>
+        </div>
+        <div class="col-lg-6 col-md-6 toptext">
+          <h1>Book Appointment With Nearby Doctors</h1>
+          <P>No Need To Waste Time Standing In Queue</P>
+          {% if user.is_authenticated %}
+          <a href="{% url 'patient_appointment'%}" class="btn3">BOOK NOW</a>
+          {% else %}
+          <a href="/login" class="btn3">BOOK NOW</a>
+          {% endif %}
+
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-sm-6 fronttextleft">
+          <h1>Know Status Of Vacant Bed In Hospitals</h1>
+          <P>Cause Life Of A Loved One Is Precious</P>
+          {% if user.is_authenticated %}
+          <a href="{% url 'patient_view_bed'%}" class="btn3">CHECK NOW</a>
+          {% else %}
+          <a href="/login" class="btn3">CHECK NOW</a>
+          {% endif %}
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <image class="fronimg" src="{% static 'images/two.png'%}"></image>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <image class="fronimg" src="{% static 'images/three.png'%}"></image>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 toptext">
+          <h1>Check For Heart Disease Using Machine Learning</h1>
+          <P>Just Enter Few Details and Check The Prediction</P>
+          <a href="{% url 'heartdisease'%}" class="btn3">CHECK NOW</a>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-sm-6 fronttextleft">
+          <h1>Health Tips Which Can Make You A Better Version Of Yourself </h1>
+          <P>It Would Not Take You More Than 5 Mins To Read It Out.</P>
+          <a href="" class="btn3">READ NOW</a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <image class="fronimg" src="{% static 'images/six.png'%}"></image>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <image  class="fronimg" src="{% static 'images/loginpage.png'%}"></image>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 toptext">
+          <h1>Consult Doctor Online 24/7</h1>
+          <P>Cause Disease Does Not Follow A 9To5 Schedule</P>
+          <a href="" class="btn3">CONSULT NOW</a>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+  {% include 'footer.html' %}
