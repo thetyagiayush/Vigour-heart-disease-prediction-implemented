@@ -1,17 +1,13 @@
 import os
 import django_heroku
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELS = os.path.join(BASE_DIR, 'models')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'so*rai_2(lk7t(yh%de+_kp_c%*r_b9wkga%gyo5tl9_8_r!xx'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 ALLOWED_HOSTS = [".herokuapp.com"]
 
@@ -66,23 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vigour_system.wsgi.application'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
-    },
-}
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
 
@@ -98,7 +77,7 @@ DATABASES = {
 
         'HOST': 'ec2-52-204-72-14.compute-1.amazonaws.com',
 
-	    'PORT': '5432',
+        'PORT': '5432',
 
     }
 
@@ -123,10 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
@@ -138,9 +113,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
 # STATIC_URL = '/static/'
 AUTH_USER_MODEL="vigour_app.CustomUser"
 AUTHENTICATION_BACKENDS=['vigour_app.EmailBackEnd.EmailBackEnd']
@@ -149,9 +121,6 @@ EMAIL_BACKEND="django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH=os.path.join(BASE_DIR,"sent_mails")
 
 REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
