@@ -10,6 +10,7 @@ from vigour_system import settings
 
 urlpatterns = [
     path('', views.showHome, name="show_home"),
+    path('api/', include('vigour_api.urls')),
     path('contact', views.contact, name="contact"),
     path('about', views.about, name="about"),
     path('heartdisease', views.heartdisease, name="heartdisease"),
