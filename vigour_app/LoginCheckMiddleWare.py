@@ -11,7 +11,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
         user=request.user
         if user.is_authenticated:
             if user.user_type == "1":
-                if modulename == "vigour_app.HodViews":
+                if modulename == "vigour_app.HodViews" or modulename == "vigour_api.views":
                     pass
                 elif modulename == "vigour_app.views" or modulename == "django.views.static":
                     pass
@@ -20,7 +20,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 else:
                     return HttpResponseRedirect(reverse("admin_home"))
             elif user.user_type == "2":
-                if modulename == "vigour_app.DoctorViews":
+                if modulename == "vigour_app.DoctorViews" or modulename == "vigour_api.views":
                     pass
                 elif modulename == "vigour_app.views" or modulename == "django.views.static":
                     pass
@@ -29,12 +29,12 @@ class LoginCheckMiddleWare(MiddlewareMixin):
             elif user.user_type == "3":
                 if modulename == "vigour_app.PatientViews" or modulename == "django.views.static":
                     pass
-                elif modulename == "vigour_app.views":
+                elif modulename == "vigour_app.views" or modulename == "vigour_api.views":
                     pass
                 else:
                     return HttpResponseRedirect(reverse("patient_home"))
             elif user.user_type == "4":
-                if modulename == "vigour_app.HospitalViews" or modulename == "django.views.static":
+                if modulename == "vigour_app.HospitalViews" or modulename == "django.views.static" or modulename == "vigour_api.views":
                     pass
                 elif modulename == "vigour_app.views":
                     pass
@@ -44,7 +44,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 return HttpResponseRedirect(reverse("show_login"))
 
         else:
-            if request.path == reverse("show_login") or request.path == reverse("do_login") or modulename == "django.contrib.auth.views" or modulename =="django.contrib.admin.sites" or modulename=="vigour_app.views":
+            if request.path == reverse("show_login") or request.path == reverse("do_login") or modulename == "django.contrib.auth.views" or modulename =="django.contrib.admin.sites" or modulename=="vigour_app.views" or modulename == "vigour_api.views":
                 pass
             else:
                 return HttpResponseRedirect(reverse("show_login"))
