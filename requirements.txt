@@ -19,3 +19,6 @@ threadpoolctl==2.1.0
 urllib3==1.26.6
 whitenoise==5.2.0
 djangorestframework~=3.12.4
+djangorestframework-simplejwt==5.0.0
+django-filter==21.1
+simplejwt==2.0.1
