@@ -1,15 +1,14 @@
 import os
-import django_heroku
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELS = os.path.join(BASE_DIR, 'models')
-
 SECRET_KEY = 'so*rai_2(lk7t(yh%de+_kp_c%*r_b9wkga%gyo5tl9_8_r!xx'
+AUTH_USER_MODEL="vigour_app.CustomUser"
+# AUTHENTICATION_BACKENDS=['vigour_app.EmailBackEnd.EmailBackEnd']
 
 DEBUG = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-ALLOWED_HOSTS = [".herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
@@ -30,7 +29,6 @@ INSTALLED_APPS = [
     'vigour_app',
     'rest_framework',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,23 +67,17 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'd57fpr6u67mfv6',
+        'NAME': 'postgres',
 
-        'USER': 'dvcnoinwgfgmqn',
+        'USER': 'postgres',
 
-        'PASSWORD': '70af01831f599af86f7ff02a1440cca128a238dd7e90a78fdc307082ff927c96',
+        'PASSWORD': '1234',
 
-        'HOST': 'ec2-52-204-72-14.compute-1.amazonaws.com',
-
-        'PORT': '5432',
+        'HOST': 'localhost',
 
     }
 
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -102,6 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
@@ -113,17 +106,25 @@ USE_L10N = True
 USE_TZ = True
 
 
-# STATIC_URL = '/static/'
-AUTH_USER_MODEL="vigour_app.CustomUser"
-AUTHENTICATION_BACKENDS=['vigour_app.EmailBackEnd.EmailBackEnd']
+
+STATIC_URL = '/static/'
+
 
 EMAIL_BACKEND="django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH=os.path.join(BASE_DIR,"sent_mails")
 
+
 REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
-
-django_heroku.settings(locals())

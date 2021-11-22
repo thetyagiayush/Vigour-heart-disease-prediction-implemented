@@ -18,6 +18,11 @@ from .serializers import DoctorSerializer, DoctorAppointmentSerializer, DoctorLe
 from rest_framework.exceptions import NotFound
 
 
+from .serializers import MyTokenObtainPairSerializer
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def User_logout(request):
@@ -346,3 +351,10 @@ class HeartDiseasePrediction(APIView):
         logistic_prediction = logistic_model.predict([[p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13]])
         response_dict = {"Random Forest Prediction": random_prediction, "Logistic Regression Prediction": logistic_prediction}
         return Response(response_dict, status=200)
+
+
+# -------------------------------------------------TESTING--------------------------------------------------------------
+
+class MyObtainTokenPairView(TokenObtainPairView):
+    permission_classes = (AllowAny,)
+    serializer_class = MyTokenObtainPairSerializer

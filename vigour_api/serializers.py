@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from vigour_app import models
 from vigour_app.models import CustomUser
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -156,3 +157,15 @@ class HospitalFeedbackSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ['feedback_reply']
         model = models.FeedBackHospital
+
+# ------------------------------------------------TESTING--------------------------------------------------------------
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    @classmethod
+    def get_token(cls, user):
+        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+
+        token['username'] = user.username
+        return token

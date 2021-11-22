@@ -44,7 +44,8 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 return HttpResponseRedirect(reverse("show_login"))
 
         else:
-            if request.path == reverse("show_login") or request.path == reverse("do_login") or modulename == "django.contrib.auth.views" or modulename =="django.contrib.admin.sites" or modulename=="vigour_app.views" or modulename == "vigour_api.views":
+            if request.path == reverse("show_login") or request.path == reverse("do_login") or modulename == "django.contrib.auth.views" or modulename =="django.contrib.admin.sites" or modulename=="vigour_app.views" or modulename == "vigour_api.views" or modulename == "vigour_system.urls":
                 pass
             else:
-                return HttpResponseRedirect(reverse("show_login"))
+                pass
+                # return HttpResponseRedirect(reverse("show_login"))
