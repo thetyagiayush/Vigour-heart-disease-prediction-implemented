@@ -1,5 +1,5 @@
 import os
-
+import django_heroku
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELS = os.path.join(BASE_DIR, 'models')
 SECRET_KEY = 'so*rai_2(lk7t(yh%de+_kp_c%*r_b9wkga%gyo5tl9_8_r!xx'
@@ -67,13 +67,15 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'postgres',
+        'NAME': 'd57fpr6u67mfv6',
 
-        'USER': 'postgres',
+        'USER': 'dvcnoinwgfgmqn',
 
-        'PASSWORD': '1234',
+        'PASSWORD': '70af01831f599af86f7ff02a1440cca128a238dd7e90a78fdc307082ff927c96',
 
-        'HOST': 'localhost',
+        'HOST': 'ec2-52-204-72-14.compute-1.amazonaws.com',
+
+	'PORT': '5432',
 
     }
 
@@ -128,3 +130,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+django_heroku.settings(locals())
