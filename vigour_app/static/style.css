@@ -38,6 +38,11 @@ body {
   padding: 2.5rem 2rem;
 }
 
+.mobilerow {
+    display: flex;
+    flex-flow: column-reverse;
+}
+
 .firstimg{
   width: 100%;
   max-width: 450px;
