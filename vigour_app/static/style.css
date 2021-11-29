@@ -377,6 +377,7 @@ ul {
   }
   .toptext{
     padding-right: 0%;
+    padding-left: 0%;
     text-align: center;
   }
   .toptext h1 {
@@ -394,6 +395,9 @@ ul {
   }
   .footer-col-3 p{
     padding-left: 30px;
+  }
+  .row{
+    padding: 2.5rem 0rem;
   }
   .mobilerow {
       display: flex;
